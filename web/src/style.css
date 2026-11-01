@@ -1,0 +1,176 @@
+:root {
+  color-scheme: light dark;
+  --bg: #0f1419;
+  --panel: #1a222c;
+  --panel-2: #243040;
+  --text: #e8eef6;
+  --muted: #9aadc2;
+  --accent: #5eead4;
+  --accent-2: #38bdf8;
+  --warn: #fbbf24;
+  --ok: #34d399;
+  --border: #2f3d4d;
+  --user: #1e3a5f;
+  --assistant: #1a2a24;
+  font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #123348 0%, transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, #1a3d32 0%, transparent 50%),
+    var(--bg);
+  color: var(--text);
+}
+
+#app { min-height: 100vh; }
+.shell {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-height: 100vh;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  color: var(--accent);
+}
+h1 {
+  margin: 0.2rem 0;
+  font-size: 1.65rem;
+  font-weight: 700;
+}
+.sub { margin: 0; color: var(--muted); max-width: 36rem; font-size: 0.95rem; }
+
+.chips, .quick-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.chip, .quick, .composer button {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  cursor: pointer;
+  font: inherit;
+}
+.chip.active {
+  border-color: var(--accent);
+  background: #134e4a;
+  color: #ccfbf1;
+}
+.quick { background: var(--panel-2); font-size: 0.85rem; }
+.chip:hover, .quick:hover, .composer button:hover { border-color: var(--accent-2); }
+
+.thread {
+  flex: 1;
+  background: color-mix(in srgb, var(--panel) 88%, black);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1rem;
+  overflow-y: auto;
+  max-height: min(58vh, 640px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.msg { border-radius: 0.85rem; padding: 0.75rem 0.9rem; }
+.msg.user { background: var(--user); align-self: flex-end; max-width: 92%; }
+.msg.assistant, .msg.system { background: var(--assistant); border: 1px solid #234; }
+.msg p { margin: 0 0 0.5rem; }
+.msg p:last-child { margin-bottom: 0; }
+
+.card {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  margin-top: 0.55rem;
+}
+.card header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.6rem;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+.card h3 { margin: 0; font-size: 1rem; flex: 1; }
+.cc {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: #0f766e;
+  color: #ecfeff;
+  border-radius: 0.35rem;
+  padding: 0.1rem 0.4rem;
+}
+.badge {
+  font-size: 0.7rem;
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid var(--border);
+}
+.badge.warn { color: #1c1917; background: var(--warn); border-color: transparent; }
+.badge.ok { color: #052e1c; background: var(--ok); border-color: transparent; }
+.note { color: var(--warn); font-size: 0.85rem; margin: 0.35rem 0; }
+.sources { margin: 0.4rem 0 0; padding-left: 1.1rem; color: var(--muted); font-size: 0.88rem; }
+.sources a { color: var(--accent-2); }
+.empty { color: var(--muted); }
+
+.composer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+}
+.composer input {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  font: inherit;
+}
+.composer button {
+  border-radius: 0.75rem;
+  padding: 0 1.1rem;
+  background: linear-gradient(135deg, #0d9488, #0284c7);
+  border: none;
+  font-weight: 600;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+code { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.85em; }
+.sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  border: 0;
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 1.35rem; }
+  .thread { max-height: 50vh; }
+}
